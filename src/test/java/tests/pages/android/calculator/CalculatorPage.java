@@ -1,50 +1,78 @@
 package tests.pages.android.calculator;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileBy;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import tests.pages.MobileBasePage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class CalculatorPage extends MobileBasePage {
 
     //*********Constructor*********
-    public CalculatorPage(AppiumDriver driver) { super(driver); }
+    public CalculatorPage(AppiumDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     //*********WebElements*********
     // Numbers
-    private By btnZeroBy = MobileBy.id("digit_0");
-    private By btnOneBy = MobileBy.id("digit_1");
-    private By btnTwoBy = MobileBy.id("digit_2");
-    private By btnThreeBy = MobileBy.id("digit_3");
-    private By btnFourBy = MobileBy.id("digit_4");
-    private By btnFiveBy = MobileBy.id("digit_5");
-    private By btnSixBy = MobileBy.id("digit_6");
-    private By btnSevenBy = MobileBy.id("digit_7");
-    private By btnEightBy = MobileBy.id("digit_8");
-    private By btnNineBy = MobileBy.id("digit_9");
+    @FindBy(id = "digit_0")
+    private WebElement btnZeroBy;
+    @FindBy(id = "digit_1")
+    private WebElement btnOneBy;
+    @FindBy(id = "digit_2")
+    private WebElement btnTwoBy;
+    @FindBy(id = "digit_3")
+    private WebElement btnThreeBy;
+    @FindBy(id = "digit_4")
+    private WebElement btnFourBy;
+    @FindBy(id = "digit_5")
+    private WebElement btnFiveBy;
+    @FindBy(id = "digit_6")
+    private WebElement btnSixBy;
+    @FindBy(id = "digit_7")
+    private WebElement btnSevenBy;
+    @FindBy(id = "digit_8")
+    private WebElement btnEightBy;
+    @FindBy(id = "digit_9")
+    private WebElement btnNineBy;
 
     //Operation
-    private By btnDivBy = MobileBy.id("op_div");
-    private By btnMulBy = MobileBy.id("op_mul");
-    private By btnSubBy = MobileBy.id("op_sub");
-    private By btnAddBy = MobileBy.id("op_add");
-    private By btnDelBy = MobileBy.id("del");
-    private By btnEqBy= MobileBy.id("eq");
-    private By btnPointBy= MobileBy.id("dec_point");
+    @FindBy(id = "op_div")
+    private WebElement btnDivBy;
+    @FindBy(id = "op_mul")
+    private WebElement btnMulBy;
+    @FindBy(id = "op_sub")
+    private WebElement btnSubBy;
+    @FindBy(id = "op_add")
+    private WebElement btnAddBy;
+    @FindBy(id = "del")
+    private WebElement btnDelBy;
+    @FindBy(id = "eq")
+    private WebElement btnEqBy;
+    @FindBy(id = "dec_point")
+    private WebElement btnPointBy;
 
     // Advanced operations
-    private By padAdvancedBy = MobileBy.id("pad_advanced");
-    private By btnInvBy= MobileBy.id("toggle_inv");
-    private By btnModeBy= MobileBy.id("toggle_mode");
-    private By btnCosBy= MobileBy.id("fun_cos");
+    @FindBy(id = "pad_advanced")
+    private WebElement padAdvancedBy;
+    @FindBy(id = "toggle_inv")
+    private WebElement btnInvBy;
+    @FindBy(id = "toggle_mode")
+    private WebElement btnModeBy;
+    @FindBy(id = "fun_cos")
+    private WebElement btnCosBy;
 
     // Result
-    private By txtFormulaBy = MobileBy.id("formula");
-    private By txtResultBy = MobileBy.id("result");
+    @FindBy(id = "formula")
+    private WebElement txtFormulaBy;
+    @FindBy(id = "result")
+    private WebElement txtResultBy;
 
     //*********PageMethods*********
 
@@ -71,28 +99,28 @@ public class CalculatorPage extends MobileBasePage {
 
     public CalculatorPage verifyFormula(int num1, String op, int num2) {
         String formula = num1 + op + num2;
-        assertEquals(txtFormulaBy, formula);
+        assertThat(txtFormulaBy.getText()).isEqualTo(formula);
         return this;
     }
 
     public CalculatorPage verifyResult(int expectedResult) {
-        assertEquals(txtResultBy, String.valueOf(expectedResult));
+        assertThat(txtResultBy.getText()).isEqualTo(String.valueOf(expectedResult));
         return this;
     }
 
     private void clickOperation(String op) {
         switch (op) {
             case "+":
-                click(btnAddBy);
+                btnAddBy.click();
                 break;
             case "-":
-                click(btnSubBy);
+                btnSubBy.click();
                 break;
             case "*":
-                click(btnMulBy);
+                btnMulBy.click();
                 break;
             case "/":
-                click(btnDivBy);
+                btnDivBy.click();
                 break;
         }
     }
@@ -100,34 +128,34 @@ public class CalculatorPage extends MobileBasePage {
     private void clickIndividualNumber(int num) {
         switch (num) {
             case 0:
-                click(btnZeroBy);
+                btnZeroBy.click();
                 break;
             case 1:
-                click(btnOneBy);
+                btnOneBy.click();
                 break;
             case 2:
-                click(btnTwoBy);
+                btnTwoBy.click();
                 break;
             case 3:
-                click(btnThreeBy);
+                btnThreeBy.click();
                 break;
             case 4:
-                click(btnFourBy);
+                btnFourBy.click();
                 break;
             case 5:
-                click(btnFiveBy);
+                btnFiveBy.click();
                 break;
             case 6:
-                click(btnSixBy);
+                btnSixBy.click();
                 break;
             case 7:
-                click(btnSevenBy);
+                btnSevenBy.click();
                 break;
             case 8:
-                click(btnEightBy);
+                btnEightBy.click();
                 break;
             case 9:
-                click(btnNineBy);
+                btnNineBy.click();
                 break;
         }
 

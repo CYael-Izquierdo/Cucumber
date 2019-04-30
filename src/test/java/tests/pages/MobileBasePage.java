@@ -39,13 +39,6 @@ public class MobileBasePage {
         return driver.findElement(elementBy).getText();
     }
 
-    //Assert
-    public void assertEquals (By elementBy, String expectedText) {
-        waitVisibility(elementBy);
-        Assert.assertEquals(readText(elementBy), expectedText);
-
-    }
-
     //Select Drop Menu Option
     public void selectDropMenuOption(By dropMenuBy, String option) {
         click(dropMenuBy);

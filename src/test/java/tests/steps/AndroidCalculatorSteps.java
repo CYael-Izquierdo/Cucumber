@@ -17,7 +17,7 @@ public class AndroidCalculatorSteps{
     }
 
     @When("I add ([^\"]*) and ([^\"]*)")
-    public void iDoTheOperationOp(int first_num, int second_num) {
+    public void iAdd(int first_num, int second_num) {
         String operation = "+";
         CalculatorPage calculatorPage = new CalculatorPage(driver);
         calculatorPage
@@ -28,7 +28,8 @@ public class AndroidCalculatorSteps{
     @Then("I check that result is equal to ([^\"]*)")
     public void iCheckThatResultIsEqualToExpectedResult(int expectedResult){
         CalculatorPage calculatorPage = new CalculatorPage(driver);
-        calculatorPage.verifyResult(expectedResult);
+        calculatorPage
+                .verifyResult(expectedResult);
     }
 
 }
